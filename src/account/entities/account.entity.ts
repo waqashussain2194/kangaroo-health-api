@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Todo } from "src/todo/entities/todo.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 export interface AccountCreationResponse {
@@ -16,4 +17,7 @@ export class Account {
 
   @Column({ select: false })
   password: string;
+
+  @OneToMany(() => Todo, todo => todo.account, { cascade: true }) // Add this line for the one-to-many relationship
+  todos: Todo[];
 }

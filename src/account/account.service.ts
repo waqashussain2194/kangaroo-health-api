@@ -1,10 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Account, AccountCreationResponse } from './entities/account.entity';
+import { Account } from './entities/account.entity';
 import { Repository } from 'typeorm';
-import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AccountService {
@@ -20,7 +18,8 @@ export class AccountService {
     const account = await this.accountRepository.findOne({
       where: {
         id: id
-      }
+      },
+      relations: ['todos']
     })
 
     if (!account) {
