@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { TodoModule } from './todo/todo.module';
 dotenv.config()
 
 @Module({
@@ -20,6 +21,7 @@ dotenv.config()
     }),
     AuthModule,
     AccountModule,
+    TodoModule,
   ],
   controllers: [],
   providers: [JwtService],

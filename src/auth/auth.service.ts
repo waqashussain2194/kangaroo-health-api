@@ -50,7 +50,6 @@ export class AuthService {
     })
 
     if (user) {
-      console.log(user)
       const payload = { email: user.email, sub: user.id }
       const access_token = this.jwtService.sign(payload);
       return {
